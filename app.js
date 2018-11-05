@@ -12,6 +12,14 @@ app.get('/', (req, res) => {
   res.render('./index.ejs', {})
 });
 
+app.get('/register', (req, res) => {
+  res.render('./user/register.ejs', {})
+});
+
+app.get('/login', (req, res) => {
+  res.render('./user/login.ejs', {})
+});
+
 app.listen(80, () => {
   console.log('http://127.0.0.1');
 })
