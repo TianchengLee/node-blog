@@ -58,7 +58,11 @@
           type: 'POST',
           dataType: 'json',
           success: function (result) {  
-            console.log(result);
+            // console.log(result);
+            if (result.status === 200) {
+              alert(result.msg);
+              location.href = '/login'
+            }
           }
         })
 
