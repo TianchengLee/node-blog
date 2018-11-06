@@ -1,8 +1,6 @@
 const express = require('express')
 const router = express.Router()
-
-router.get('/', (req, res) => {
-  res.render('./index.ejs', {})
-});
+const controller = require('../controller/index.js')
+router.get('/', controller.handleIndexGet);
 
 module.exports = router
