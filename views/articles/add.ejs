@@ -23,6 +23,27 @@
   <script>
     $(function () {  
       var mditor =  Mditor.fromTextarea(document.getElementById('editor'));
+
+      $('#form').on('submit', function () {  
+        $.ajax({
+          url: '/article/add',
+          type: 'POST',
+          data: $('#form').serialize(),
+          dataType: 'json',
+          success: function (result) {  
+            if (result.status === 200) {
+              location.href = '/article/info/' + result.articleId
+            }
+          },
+          error: function (error) {  
+            console.log(error)
+            if (error.responseJSON.status === 400) {
+              alert(error.responseJSON.msg)
+            }
+          }
+        })
+        return false
+      })
     })
   </script>
 <%- include('../common/footer.ejs') %>
