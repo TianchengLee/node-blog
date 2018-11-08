@@ -6,7 +6,7 @@ module.exports = {
     // 默认情况下  session的过期时间就是关闭浏览器时
 
     // 定义每页显示的文章数量
-    let pageSize = 3
+    let pageSize = 5
 
     let currentPage = parseInt(req.query.page) || 1
 
@@ -23,7 +23,7 @@ module.exports = {
     select count(*) as count from articles;`
 
     conn.query(querySql, (err, result) => {
-      console.log(result)
+      // console.log(result)
       // 判断是否出错, 如果出错了 result是undefined  所以就直接赋值为空数组避免模板引擎出错
       if (!result) result = [[]] // 如果result查询到结果了  就不会进入if 不会覆盖结果
       // 总文章数量
