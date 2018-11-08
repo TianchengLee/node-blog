@@ -4,7 +4,7 @@
   <h1 class="text-center">
     <%= article.title %>
     <% if (user && user.id === article.author_id) { %>
-      <a class="btn btn-info pull-right" href="javascript:;">编辑</a>
+      <a class="btn btn-info pull-right" href="/article/edit/<%= article.id %>">编辑</a>
     <% } %>
   </h1>
   <hr>

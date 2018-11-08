@@ -42,8 +42,35 @@ module.exports = {
       // 渲染文章详情页面
       res.render('./articles/info.ejs', renderObj)
 
-      console.log(renderObj.article)
+      // console.log(renderObj.article)
 
+    })
+  },
+  handleArticleEditGet(req, res) {
+    if (!req.session.isLogin) return res.redirect('/')
+    // 查询数据库 根据ID获取文章信息
+    const id = req.params.id
+    const querySql = 'select * from articles where id = ' + id
+    conn.query(querySql, (err, result) => {
+      if (err || result.length !== 1) return res.status(500).send({ status: 500, msg: '文章获取失败, 请重试', data: null })
+      console.log(result)
+      res.render('./articles/edit.ejs', {
+        user: req.session.user,
+        isLogin: req.session.isLogin,
+        article: result[0]
+      })
+    })
+
+  },
+  handleArticleEditPost(req, res) {
+    const article = req.body
+    article.ctime = moment().format('YYYY-MM-DD HH:mm:ss')
+    console.log(article)
+    const updateSql = 'update articles set ? where id = ?'
+    conn.query(updateSql, [article, article.id], (err, result) => {
+      if (err || result.affectedRows !== 1) return res.status(400).send({ status: 400, msg: '修改文章失败, 请重试!', data: null })
+      // 修改成功, 像客户端响应结果
+      res.send({status: 200, articleId: article.id});
     })
   }
 }
