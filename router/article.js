@@ -8,4 +8,8 @@ router.post('/article/add', controller.handleArticleAddPost);
 
 router.get('/article/info/:id', controller.handleArticleInfoGet);
 
+router.get('/article/edit/:id', controller.handleArticleEditGet);
+
+router.post('/article/edit', controller.handleArticleEditPost);
+
 module.exports = router
