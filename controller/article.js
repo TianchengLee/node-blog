@@ -30,7 +30,7 @@ module.exports = {
     conn.query(querySql, (err, result) => {
       // 封装渲染的对象, 登录用户信息和是否登录的记录
       const renderObj = {
-        user: req.session.user,
+        user: req.session.user,  // 如果用户未登录 user 则不存在
         isLogin: req.session.isLogin
       }
       // 如果出现错误或者查不到文章 就返回404页面
@@ -41,6 +41,8 @@ module.exports = {
       renderObj.article = result[0]
       // 渲染文章详情页面
       res.render('./articles/info.ejs', renderObj)
+
+      console.log(renderObj.article)
 
     })
   }
