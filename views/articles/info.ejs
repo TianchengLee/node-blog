@@ -1,5 +1,18 @@
 <%- include('../common/header.ejs') %>
 
-<h1>这是文章的详情页  未完待续...</h1>
+<div class="container">
+  <h1 class="text-center">
+    <%= article.title %>
+    <% if (user && user.id === article.author_id) { %>
+      <a class="btn btn-info pull-right" href="javascript:;">编辑</a>
+    <% } %>
+  </h1>
+  <hr>
+
+  <div>
+    <%- article.content %>
+  </div>
+
+</div>
 
 <%- include('../common/footer.ejs') %>
