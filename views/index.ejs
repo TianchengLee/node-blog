@@ -1,3 +1,14 @@
 <%- include('./common/header.ejs') %>
+<div class="container">
   <h1>文章列表</h1>
+  <div class="list-group">
+    <% articles.forEach(item => { %>
+    <a href="/article/info/<%= item.id %>" class="list-group-item">
+      <%= item.title %>
+      <span class="badge" style="background-color: #5cb85c">作者昵称:<%= item.nickname %></span>
+      <span class="badge" style="background-color: #f0ad4e">发表时间:<%= item.ctime%></span>
+    </a>
+    <% }) %>
+  </div>
+</div>
 <%- include('./common/footer.ejs') %>
